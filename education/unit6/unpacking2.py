@@ -1,0 +1,91 @@
+# Упаковка и распаковка в параметрах функций
+
+# *args
+# * позволяет передать в функцию несколько значений,
+#  и все они будут упакованы в кортеж
+
+def fun(*args):
+    # обращаемся к первому элементу кортежа
+    print(args[0])
+  
+    # выводим весь кортеж
+    print(args)
+  
+fun("Python", "C++", "Java", "C#")
+
+
+
+def sum(*args):
+    result = 0
+    for arg in args: 
+        result += arg
+    return result
+  
+print(sum(1, 2, 3))         # 6
+print(sum(1, 2, 3, 4))      # 10
+print(sum(1, 2, 3, 4, 5))   # 15
+
+# Оператор **
+# ** упаковывает аргументы, переданные по имени, в словарь
+
+def fun(**kwargs):
+    print(kwargs)   # выводим словарь на консоль
+  
+fun(name="Tom", age="38", company="Google")
+fun(language="Python", version="3.11")
+
+
+# Распаковка аргументов
+# Оператор * и распаковка
+
+def sum(*args):
+  result = 0
+  for arg in args:
+    result += arg
+  return result
+  
+numbers = (1, 2, 3, 4, 5)
+print(sum(numbers))
+
+# чтобы элементы кортежа были переданы в кортеж *args как отдельные значения, 
+# необходимо выполнить их распаковку
+
+def sum(*args):
+  result = 0
+  for arg in args:
+    result += arg
+  return result
+  
+numbers = (1, 2, 3, 4, 5)
+# применяем распаковку - *numbers
+print(sum(*numbers))     # 15
+
+
+def print_person(name, age, company):
+  print(f"Name:{name}, Age: {age}, Company: {company}")
+  
+person =("Tom", 38, "Google")
+# выполняем распаковку кортежа person
+print_person(*person)   # Name:Tom, Age: 38, Company: Google
+
+
+# Оператор ** и распаковка
+
+def print_person(name, age, company):
+  print(f"Name:{name}, Age: {age}, Company: {company}")
+  
+tom ={"name":"Tom", "age":38, "company":"Google"}
+# выполняем распаковку словаря tom
+print_person(**tom) # Name:Tom, Age: 38, Company: Google
+
+
+# Сочетание параметров
+
+def sum(num1, num2, *nums):
+    result=num1+num2
+    for n in nums:
+        result += n
+    return result
+ 
+print(sum(1,2,3))       # 6
+print(sum(1,2,3,4))     # 10
